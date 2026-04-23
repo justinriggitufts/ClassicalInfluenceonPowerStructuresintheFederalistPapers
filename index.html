@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greco-Roman Influence on the Federalist Papers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap">
+  <style>
+    :root {
+      --parchment: #EDE7D7;
+      --parchment-dark: #e4dcc8;
+      --ink: #1c1a16;
+      --ink-light: #3d3829;
+      --accent: #7a5c3a;
+      --accent-dark: #4a3520;
+      --gold: #a0722a;
+      --gold-light: #c49a4e;
+      --highlight-bg: rgba(160, 114, 42, 0.13);
+      --highlight-hover: rgba(160, 114, 42, 0.27);
+      --border: #c8b898;
+      --border-light: #d8cbb0;
+      --tooltip-bg: #1a1610;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--parchment);
+      color: var(--ink);
+      font-family: 'Figtree', system-ui, sans-serif;
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #0f0e0c;
+      color: #f0ebe0;
+      padding: 4.5rem 2.5rem 4rem;
+      text-align: left;
+      max-width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(160,114,42,0.7) 0%, rgba(160,114,42,0.15) 60%, transparent 100%);
+    }
+    .header-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .header-eyebrow {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold-light);
+      margin-bottom: 1.2rem;
+      opacity: 0.85;
+    }
+    header h1 {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: #f5ede0;
+      margin-bottom: 1.1rem;
+      max-width: 700px;
+    }
+    .header-sub {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(240,235,224,0.45);
+      letter-spacing: 0.01em;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      background: #0f0e0c;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      border-bottom: 1px solid rgba(160,114,42,0.25);
+      padding: 0 calc((100% - 820px) / 2);
+    }
+    nav button {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: rgba(240,235,224,0.42);
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.1rem;
+      cursor: pointer;
+      transition: color 0.18s, border-color 0.18s;
+      white-space: nowrap;
+    }
+    nav button:hover { color: rgba(240,235,224,0.8); border-bottom-color: rgba(160,114,42,0.35); }
+    nav button.active { color: #f5ede0; border-bottom-color: var(--gold-light); }
+    nav .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 1px 7px;
+      font-size: 0.65rem;
+      margin-left: 5px;
+      vertical-align: middle;
+      letter-spacing: 0.04em;
+    }
+    nav button.active .badge { background: rgba(160,114,42,0.25); color: var(--gold-light); }
+
+    /* ── Sections ── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── Intro ── */
+    #intro {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+    .intro-eyebrow {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    #intro h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 400;
+      margin-bottom: 1.8rem;
+      color: var(--accent-dark);
+    }
+    #intro p {
+      margin-bottom: 1.3rem;
+      font-size: 1rem;
+      color: var(--ink-light);
+      line-height: 1.85;
+    }
+    .how-to-box {
+      background: var(--parchment-dark);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      margin: 2.5rem 0;
+    }
+    .how-to-box h3 {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .how-to-box p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      color: var(--ink-light);
+    }
+    .how-to-box .swatch {
+      display: inline-block;
+      width: 28px; height: 16px;
+      background: var(--highlight-bg);
+      border-bottom: 2px solid var(--gold);
+      vertical-align: middle;
+      margin-right: 6px;
+      border-radius: 2px;
+    }
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .paper-card {
+      background: var(--parchment-dark);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.4rem;
+      cursor: pointer;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .paper-card:hover { box-shadow: 0 4px 16px rgba(92,61,30,0.12); border-color: var(--gold); }
+    .paper-card .card-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .paper-card .card-title {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .paper-card .card-desc {
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+    .paper-card .card-count {
+      margin-top: 0.7rem;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.72rem;
+      color: var(--gold);
+    }
+
+    /* ── Paper sections ── */
+    .paper-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+    .paper-hd {
+      text-align: center;
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .paper-hd .eyebrow {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .paper-hd h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+      font-weight: 400;
+      color: var(--accent-dark);
+      margin-bottom: 0.35rem;
+    }
+    .paper-hd .subtitle {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .legend-bar {
+      background: var(--parchment-dark);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 0.7rem 1rem;
+      margin-bottom: 2.2rem;
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.78rem;
+      color: #5c4a38;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .legend-bar .swatch {
+      width: 26px; height: 13px;
+      background: var(--highlight-bg);
+      border-bottom: 2px solid var(--gold);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+    .paper-salutation {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .paper-body p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+    .paper-body p.drop-cap::first-letter {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.8rem;
+      font-weight: 400;
+      float: left;
+      line-height: 0.82;
+      margin: 0.06em 0.1em 0 0;
+      color: var(--gold);
+    }
+    .paper-body .caps { text-transform: uppercase; font-size: 0.95em; letter-spacing: 0.04em; }
+    .publius { text-align: right; font-style: italic; color: var(--accent); margin-top: 1rem; }
+    sup.fn { font-size: 0.65em; color: var(--gold); }
+    sup.fn a { color: var(--gold); text-decoration: none; }
+    sup.fn a:hover { text-decoration: underline; }
+
+    /* ── Annotations ── */
+    .annotated {
+      background: var(--highlight-bg);
+      border-bottom: 2px solid var(--gold);
+      cursor: help;
+      border-radius: 1px;
+      padding: 1px 1px 0;
+      transition: background 0.18s;
+    }
+    .annotated:hover { background: var(--highlight-hover); }
+
+    /* ── Tooltip ── */
+    #tooltip {
+      position: fixed;
+      z-index: 9999;
+      max-width: 430px;
+      width: max-content;
+      background: var(--tooltip-bg);
+      color: #f0e6d3;
+      border-radius: 7px;
+      padding: 16px 18px 18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(184,134,11,0.4);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.14s ease;
+      font-size: 0.9rem;
+    }
+    #tooltip.visible { opacity: 1; pointer-events: auto; }
+    .tt-tag {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--gold-light);
+      margin-bottom: 3px;
+    }
+    .tt-author {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #f5e6c8;
+      margin-bottom: 1px;
+    }
+    .tt-work {
+      font-family: 'Figtree', sans-serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+    }
+    .tt-work a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(212,169,78,0.4); }
+    .tt-work a:hover { border-bottom-color: var(--gold-light); }
+    .tt-hr { border: none; border-top: 1px solid rgba(255,255,255,0.12); margin: 10px 0; }
+    .tt-quote-label {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #8a7560;
+      margin-bottom: 5px;
+    }
+    .tt-quote {
+      font-family: 'Figtree', sans-serif;
+      font-style: italic;
+      font-size: 0.83rem;
+      line-height: 1.65;
+      color: #ddd0ba;
+      margin-bottom: 11px;
+    }
+    .tt-analysis-label {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #8a7560;
+      margin-bottom: 5px;
+    }
+    .tt-analysis {
+      font-family: 'Figtree', sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #b8a990;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      header { padding: 3rem 1.5rem 2.5rem; }
+      nav { padding: 0 1rem; }
+      nav button { padding: 0.75rem 0.75rem; font-size: 0.7rem; }
+      .paper-wrap { padding: 2rem 1rem 4rem; }
+      #tooltip { max-width: calc(100vw - 20px); font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Tooltip ── -->
+<div id="tooltip" role="tooltip" aria-hidden="true">
+  <div class="tt-tag">Classical Influence</div>
+  <div class="tt-author" id="tt-author"></div>
+  <div class="tt-work" id="tt-work"></div>
+  <hr class="tt-hr">
+  <div class="tt-quote-label">Classical Quote</div>
+  <div class="tt-quote" id="tt-quote"></div>
+  <div class="tt-analysis-label">Analysis</div>
+  <div class="tt-analysis" id="tt-analysis"></div>
+</div>
+
+<!-- ── Header ── -->
+<header>
+  <div class="header-inner">
+    <div class="header-eyebrow">PS-0158 &mdash; Greco-Roman Influence on America</div>
+    <h1>Greco-Roman Influence<br>on the Federalist Papers</h1>
+    <div class="header-sub">An annotated study of classical influence on American constitutional thought</div>
+  </div>
+</header>
+
+<!-- ── Navigation ── -->
+<nav>
+  <button class="active" onclick="showSection('intro', this)">Introduction</button>
+  <button onclick="showSection('fp10', this)">Federalist No.&nbsp;10 <span class="badge">10</span></button>
+  <button onclick="showSection('fp58', this)">Federalist No.&nbsp;58 <span class="badge">8</span></button>
+  <button onclick="showSection('fp70', this)">Federalist No.&nbsp;70 <span class="badge">8</span></button>
+</nav>
+
+<!-- ════════════════════════════════════════
+     INTRODUCTION
+════════════════════════════════════════ -->
+<div id="intro" class="section active">
+  <div id="intro" style="max-width:780px;margin:0 auto;padding:3rem 2rem 4rem;">
+    <div class="intro-eyebrow">About This Project</div>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;margin-bottom:1.8rem;color:#4a3520;">What I Did, Why I Did It,<br>and Why People Will Find It Interesting</h2>
+
+    <p>Last year, I worked for the world's leading technology policy think tank as a contributing writer and research intern. In my role, I developed policy briefs to be read by lawmakers, primarily focusing on national competitiveness and emerging technologies. Additionally, I learned that policy is a two-step process. The first step is <em>policy ideation</em>, which focuses on the big ideas for how we should improve our society. This is the area in which I predominantly worked, recommending novel solutions to some of our most pressing issues. But the second, more seldom discussed step, is <em>policy implementation</em>, which focuses on how power is dispersed to enable theoretical ideas to be tangibly applied to improve people's lives. This is where most policy stalls, preventing people from feeling a positive impact, even after legislation is signed into law.</p>
+
+    <p>Power dispersion is the way responsibility is distributed throughout a governmental structure. It includes both how lawmaking power is allocated across different branches of government and how bureaucratic power is allocated throughout different agencies and different levels of government. Studying how power is dispersed, how power was intended to be dispersed, and what the results are is essential to being able to craft power structures that enable effective progress to be made. This is what the Founding Fathers did.</p>
+
+    <p>At the time, the Articles of Confederation, plagued by structural weaknesses, had just fallen apart, necessitating a fundamental rethinking of how the United States should operate. The new Constitution was a radical departure from the Articles of Confederation, centralizing power and consolidating control, enabling more decisive decision-making. And, for the most part, it worked. In fact, for the United States' first two centuries, once a policy was legislated, lawmakers entrusted bureaucrats to quickly move to enact change, enabling complex projects to be swiftly completed. For example, this power dynamic allowed the Roosevelt Administration to rapidly try various programs—known as Alphabet Soup—as part of the New Deal. Today, such speed would be structurally impossible.</p>
+
+    <p>Although the causes of our political decay has been the subject of many important books, such as <em>Abundance</em> by Ezra Klein and Derek Thompson and <em>Why Nothing Works</em> by Marc Dunkelman, it is not the subject of this project. In order to return to a power structure more reminiscent of early America that supports, instead of inhibits, progress, it is essential to understand the thought process that built the framework which enabled the United States to swiftly grow from a loosely connected set of colonies, to an industrial powerhouse, to the most prosperous nation in the history of the world. Although some of the specific provisions may no longer be applicable, the intent behind them likely is. As such, we must refer to the literature that shaped the thinking of the founding fathers, which will enable us to craft revamped political structures that adequately enable us to implement policy today.</p>
+
+    <p>One of the most essential set of documents written by the founding fathers explaining how they understood power is the Federalist Papers. Composed by John Jay, James Madison, and Alexander Hamilton in the late 1780s, the Federalist Papers were written to convince voters in the State of New York to ratify the newly drafted Constitution. Despite it being widely known that classical philosophy had a major influence on the Founding Fathers' strategic decisions in drafting the constitution, the specific pieces of work that directly shaped political choices are less known. Typically, direct connections are only drawn between founding documents and enlightenment thinkers, such as Locke and Montesquieu, most notably Jefferson's declaration that "Life, Liberty, and the Pursuit of Happiness" were unalienable rights, an amendment to Locke's "Life, Liberty, and Property". However, much of the foundational structural elements of our governmental system trace back much further to Greek philosophers, including their direct thoughts and those from their characters, which are less frequently referenced.</p>
+
+    <p>As we face a moment that necessitates a similar, ground-up reimagining of our system, even if not as radical, understanding which philosophers had the biggest influence, both through their characters or otherwise, which of their works had the most substantial impact, and which specific elements of our governmental system were influenced by which writings is essential for us to have well-informed conversations as a country as we collectively move forward.</p>
+
+    <p>While it may be nearly impossible to connect every provision in every foundational document to every historical piece of political philosophy, this project is an attempt to at least begin to do so for the Federalist provisions of our government. I chose three of the most widely cited Federalist Papers—10, 58, and 70—and did my best to connect lines written to lines in classic Greek texts. These essays, covering factionalism, representation, and leadership, respectively, are the basis for some of the most integral parts of our system of government. Given that as an individual I cannot thoroughly delve into every text in the field, I used digital resources such as the Avalon Project and a set of LLMs to help skim for potential candidates, which I was then able to go through to find the best match.</p>
+
+    <p>I decided to place my analysis in the form of an interactive website that helps to enhance accessibility. Unlike traditional research papers, a website is more approachable to most people, enabling a greater audience to interact with it and thus promoting a more widespread civic education. Users can select each of the three aforementioned essays, read through them, and see my annotations on the lines I determined as influenced by previous works. Additionally, I provide links in these annotations to digital English translations of the original sources to allow readers to easily consume the classic texts. As we've spoken about at length in class, it is critical that we go back to the original source, which is not done frequently enough.</p>
+
+    <div class="how-to-box">
+      <h3>How to Use This Site</h3>
+      <p>Select a Federalist Paper from the navigation above. As you read, look for <span class="swatch"></span><strong>highlighted phrases</strong>. Hover over any highlighted phrase to reveal the classical source that influenced it, including a direct quote and analysis of the connection.</p>
+    </div>
+
+    <div class="papers-grid">
+      <div class="paper-card" onclick="showSection('fp10', document.querySelectorAll('nav button')[1])">
+        <div class="card-num">10</div>
+        <div class="card-title">On Factionalism</div>
+        <div class="card-desc">James Madison argues that faction is an unavoidable feature of free society, and that a large republic is the best remedy.</div>
+        <div class="card-count">10 classical annotations</div>
+      </div>
+      <div class="paper-card" onclick="showSection('fp58', document.querySelectorAll('nav button')[2])">
+        <div class="card-num">58</div>
+        <div class="card-title">On Representation</div>
+        <div class="card-desc">Madison defends the structure of congressional representation and the power of the House over the purse.</div>
+        <div class="card-count">8 classical annotations</div>
+      </div>
+      <div class="paper-card" onclick="showSection('fp70', document.querySelectorAll('nav button')[3])">
+        <div class="card-num">70</div>
+        <div class="card-title">On Executive Energy</div>
+        <div class="card-desc">Alexander Hamilton argues for a single, energetic executive as essential to effective republican government.</div>
+        <div class="card-count">8 classical annotations</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     FEDERALIST NO. 10
+════════════════════════════════════════ -->
+<div id="fp10" class="section">
+  <div class="paper-wrap">
+    <div class="paper-hd">
+      <div class="eyebrow">The Federalist Papers &mdash; No. 10</div>
+      <h2>The Same Subject Continued</h2>
+      <div class="subtitle">James Madison, November 22, 1787</div>
+    </div>
+
+    <div class="legend-bar">
+      <div class="swatch"></div>
+      Hover over highlighted text to reveal the classical source and analysis.
+    </div>
+
+    <div class="paper-salutation">To the People of the State of New York:</div>
+
+    <div class="paper-body">
+
+      <p class="drop-cap">Among the numerous advantages promised by a well-constructed Union, <span class="annotated" data-id="fp10-xenophon">none deserves to be more accurately developed than its tendency to break and control the violence of faction</span>. The friend of popular governments never finds himself so much alarmed for their character and fate, as when he contemplates their propensity to this dangerous vice. He will not fail, therefore, to set a due value on any plan which, without violating the principles to which he is attached, provides a proper cure for it. <span class="annotated" data-id="fp10-polybius">The instability, injustice, and confusion introduced into the public councils, have, in truth, been the mortal diseases under which popular governments have everywhere perished</span>; as they continue to be the favorite and fruitful topics from which the adversaries to liberty derive their most specious declamations. The valuable improvements made by the American constitutions on the popular models, both ancient and modern, cannot certainly be too much admired; but it would be an unwarrantable partiality, to contend that they have as effectually obviated the danger on this side, as was wished and expected. Complaints are everywhere heard from our most considerate and virtuous citizens, equally the friends of public and private faith, and of public and personal liberty, that our governments are too unstable, <span class="annotated" data-id="fp10-cicero">that the public good is disregarded in the conflicts of rival parties, and that measures are too often decided, not according to the rules of justice and the rights of the minor party, but by the superior force of an interested and overbearing majority</span>. However anxiously we may wish that these complaints had no foundation, the evidence of known facts will not permit us to deny that they are in some degree true. It will be found, indeed, on a candid review of our situation, that some of the distresses under which we labor have been erroneously charged on the operation of our governments; but it will be found, at the same time, that other causes will not alone account for many of our heaviest misfortunes; and, particularly, for that prevailing and increasing distrust of public engagements, and alarm for private rights, which are echoed from one end of the continent to the other. These must be chiefly, if not wholly, effects of <span class="annotated" data-id="fp10-thucydides">the unsteadiness and injustice with which a factious spirit has tainted our public administrations</span>.</p>
+
+      <p>By a faction, I understand a number of citizens, whether amounting to a majority or a minority of the whole, who are united and actuated by some common impulse of passion, or of interest, adversed to the rights of other citizens, or to the permanent and aggregate interests of the community.</p>
+
+      <p>There are two methods of curing the mischiefs of faction: the one, by removing its causes; the other, by controlling its effects.</p>
+
+      <p><span class="annotated" data-id="fp10-lycurgus">There are again two methods of removing the causes of faction: the one, by destroying the liberty which is essential to its existence</span>; the other, by giving to every citizen the same opinions, the same passions, and the same interests.</p>
+
+      <p>It could never be more truly said than of the first remedy, that it was worse than the disease. Liberty is to faction what air is to fire, an aliment without which it instantly expires. But it could not be less folly to abolish liberty, which is essential to political life, because it nourishes faction, than it would be to wish the annihilation of air, which is essential to animal life, because it imparts to fire its destructive agency.</p>
+
+      <p>The second expedient is as impracticable as the first would be unwise. As long as the reason of man continues fallible, and he is at liberty to exercise it, different opinions will be formed. As long as the connection subsists between his reason and his self-love, his opinions and his passions will have a reciprocal influence on each other; and the former will be objects to which the latter will attach themselves. The diversity in the faculties of men, from which the rights of property originate, is not less an insuperable obstacle to a uniformity of interests. The protection of these faculties is the first object of government. From the protection of different and unequal faculties of acquiring property, the possession of different degrees and kinds of property immediately results; and from the influence of these on the sentiments and views of the respective proprietors, ensues a division of the society into different interests and parties.</p>
+
+      <p>The latent causes of faction are thus sown in the nature of man; and we see them everywhere brought into different degrees of activity, according to the different circumstances of civil society. A zeal for different opinions concerning religion, concerning government, and many other points, as well of speculation as of practice; an attachment to different leaders ambitiously contending for pre-eminence and power; or to persons of other descriptions whose fortunes have been interesting to the human passions, have, in turn, <span class="annotated" data-id="fp10-plutarch">divided mankind into parties, inflamed them with mutual animosity, and rendered them much more disposed to vex and oppress each other than to co-operate for their common good</span>. So strong is this propensity of mankind to fall into mutual animosities, that where no substantial occasion presents itself, the most frivolous and fanciful distinctions have been sufficient to kindle their unfriendly passions and excite their most violent conflicts. <span class="annotated" data-id="fp10-aristotle">But the most common and durable source of factions has been the various and unequal distribution of property</span>. Those who hold and those who are without property have ever formed distinct interests in society. Those who are creditors, and those who are debtors, fall under a like discrimination. A landed interest, a manufacturing interest, a mercantile interest, a moneyed interest, with many lesser interests, grow up of necessity in civilized nations, and divide them into different classes, actuated by different sentiments and views. The regulation of these various and interfering interests forms the principal task of modern legislation, and involves the spirit of party and faction in the necessary and ordinary operations of the government.</p>
+
+      <p>No man is allowed to be a judge in his own cause, because his interest would certainly bias his judgment, and, not improbably, corrupt his integrity. With equal, nay with greater reason, a body of men are unfit to be both judges and parties at the same time; yet what are many of the most important acts of legislation, but so many judicial determinations, not indeed concerning the rights of single persons, but concerning the rights of large bodies of citizens? And what are the different classes of legislators but advocates and parties to the causes which they determine? Is a law proposed concerning private debts? It is a question to which the creditors are parties on one side and the debtors on the other. <span class="annotated" data-id="fp10-solon">Justice ought to hold the balance between them. Yet the parties are, and must be, themselves the judges</span>; and the most numerous party, or, in other words, the most powerful faction must be expected to prevail. Shall domestic manufactures be encouraged, and in what degree, by restrictions on foreign manufactures? are questions which would be differently decided by the landed and the manufacturing classes, and probably by neither with a sole regard to justice and the public good. The apportionment of taxes on the various descriptions of property is an act which seems to require the most exact impartiality; yet there is, perhaps, no legislative act in which greater opportunity and temptation are given to a predominant party to trample on the rules of justice. Every shilling with which they overburden the inferior number, is a shilling saved to their own pockets.</p>
+
+      <p>It is in vain to say that enlightened statesmen will be able to adjust these clashing interests, and render them all subservient to the public good. Enlightened statesmen will not always be at the helm. Nor, in many cases, can such an adjustment be made at all without taking into view indirect and remote considerations, which will rarely prevail over the immediate interest which one party may find in disregarding the rights of another or the good of the whole.</p>
+
+      <p>The inference to which we are brought is, that the <span class="caps">causes</span> of faction cannot be removed, and that relief is only to be sought in the means of controlling its <span class="caps">effects</span>.</p>
+
+      <p>If a faction consists of less than a majority, relief is supplied by the republican principle, which enables the majority to defeat its sinister views by regular vote. It may clog the administration, it may convulse the society; but it will be unable to execute and mask its violence under the forms of the Constitution. When a majority is included in a faction, the form of popular government, on the other hand, enables it to sacrifice to its ruling passion or interest both the public good and the rights of other citizens. To secure the public good and private rights against the danger of such a faction, and at the same time to preserve the spirit and the form of popular government, is then the great object to which our inquiries are directed. Let me add that it is the great desideratum by which this form of government can be rescued from the opprobrium under which it has so long labored, and be recommended to the esteem and adoption of mankind.</p>
+
+      <p>By what means is this object attainable? Evidently by one of two only. Either the existence of the same passion or interest in a majority at the same time must be prevented, or the majority, having such coexistent passion or interest, must be rendered, by their number and local situation, unable to concert and carry into effect schemes of oppression. If the impulse and the opportunity be suffered to coincide, we well know that neither moral nor religious motives can be relied on as an adequate control. They are not found to be such on the injustice and violence of individuals, and lose their efficacy in proportion to the number combined together, that is, in proportion as their efficacy becomes needful.</p>
+
+      <p>From this view of the subject it may be concluded that <span class="annotated" data-id="fp10-isocrates">a pure democracy, by which I mean a society consisting of a small number of citizens, who assemble and administer the government in person, can admit of no cure for the mischiefs of faction. A common passion or interest will, in almost every case, be felt by a majority of the whole; a communication and concert result from the form of government itself; and there is nothing to check the inducements to sacrifice the weaker party or an obnoxious individual.</span> <span class="annotated" data-id="fp10-plato">Hence it is that such democracies have ever been spectacles of turbulence and contention; have ever been found incompatible with personal security or the rights of property; and have in general been as short in their lives as they have been violent in their deaths.</span> Theoretic politicians, who have patronized this species of government, have erroneously supposed that by reducing mankind to a perfect equality in their political rights, they would, at the same time, be perfectly equalized and assimilated in their possessions, their opinions, and their passions.</p>
+
+      <p>A republic, by which I mean a government in which the scheme of representation takes place, opens a different prospect, and promises the cure for which we are seeking. Let us examine the points in which it varies from pure democracy, and we shall comprehend both the nature of the cure and the efficacy which it must derive from the Union.</p>
+
+      <p>The two great points of difference between a democracy and a republic are: first, the delegation of the government, in the latter, to a small number of citizens elected by the rest; secondly, the greater number of citizens, and greater sphere of country, over which the latter may be extended.</p>
+
+      <p>The effect of the first difference is, on the one hand, to refine and enlarge the public views, by passing them through the medium of a chosen body of citizens, whose wisdom may best discern the true interest of their country, and whose patriotism and love of justice will be least likely to sacrifice it to temporary or partial considerations. Under such a regulation, it may well happen that the public voice, pronounced by the representatives of the people, will be more consonant to the public good than if pronounced by the people themselves, convened for the purpose. On the other hand, the effect may be inverted. Men of factious tempers, of local prejudices, or of sinister designs, may, by intrigue, by corruption, or by other means, first obtain the suffrages, and then betray the interests, of the people. The question resulting is, whether small or extensive republics are more favorable to the election of proper guardians of the public weal; and it is clearly decided in favor of the latter by two obvious considerations.</p>
+
+      <p>In the first place, it is to be remarked that, however small the republic may be, the representatives must be raised to a certain number, in order to guard against the cabals of a few; and that, however large it may be, they must be limited to a certain number, in order to guard against the confusion of a multitude. Hence, the number of representatives in the two cases not being in proportion to that of the two constituents, and being proportionally greater in the small republic, it follows that, if the proportion of fit characters be not less in the large than in the small republic, the former will present a greater option, and consequently a greater probability of a fit choice.</p>
+
+      <p>In the next place, as each representative will be chosen by a greater number of citizens in the large than in the small republic, it will be more difficult for unworthy candidates to practice with success the vicious arts by which elections are too often carried; and the suffrages of the people being more free, will be more likely to centre in men who possess the most attractive merit and the most diffusive and established characters.</p>
+
+      <p>It must be confessed that in this, as in most other cases, there is a mean, on both sides of which inconveniences will be found to lie. By enlarging too much the number of electors, you render the representatives too little acquainted with all their local circumstances and lesser interests; as by reducing it too much, you render him unduly attached to these, and too little fit to comprehend and pursue great and national objects. The federal Constitution forms a happy combination in this respect; the great and aggregate interests being referred to the national, the local and particular to the State legislatures.</p>
+
+      <p>The other point of difference is, the greater number of citizens and extent of territory which may be brought within the compass of republican than of democratic government; and it is this circumstance principally which renders factious combinations less to be dreaded in the former than in the latter. The smaller the society, the fewer probably will be the distinct parties and interests composing it; the fewer the distinct parties and interests, the more frequently will a majority be found of the same party; and the smaller the number of individuals composing a majority, and the smaller the compass within which they are placed, the more easily will they concert and execute their plans of oppression. Extend the sphere, and you take in a greater variety of parties and interests; you make it less probable that a majority of the whole will have a common motive to invade the rights of other citizens; or if such a common motive exists, it will be more difficult for all who feel it to discover their own strength, and to act in unison with each other. Besides other impediments, it may be remarked that, where there is a consciousness of unjust or dishonorable purposes, communication is always checked by distrust in proportion to the number whose concurrence is necessary.</p>
+
+      <p>Hence, it clearly appears, that the same advantage which a republic has over a democracy, in controlling the effects of faction, is enjoyed by a large over a small republic — is enjoyed by the Union over the States composing it. Does the advantage consist in the substitution of representatives whose enlightened views and virtuous sentiments render them superior to local prejudices and schemes of injustice? It will not be denied that the representation of the Union will be most likely to possess these requisite endowments. Does it consist in the greater security afforded by a greater variety of parties, against the event of any one party being able to outnumber and oppress the rest? In an equal degree does the increased variety of parties comprised within the Union, increase this security. Does it, in fine, consist in the greater obstacles opposed to the concert and accomplishment of the secret wishes of an unjust and interested majority? Here, again, the extent of the Union gives it the most palpable advantage.</p>
+
+      <p>The influence of factious leaders may kindle a flame within their particular States, but will be unable to spread a general conflagration through the other States. A religious sect may degenerate into a political faction in a part of the Confederacy; but the variety of sects dispersed over the entire face of it must secure the national councils against any danger from that source. A rage for paper money, for an abolition of debts, for an equal division of property, or for any other improper or wicked project, will be less apt to pervade the whole body of the Union than a particular member of it; in the same proportion as such a malady is more likely to taint a particular county or district, than an entire State.</p>
+
+      <p>In the extent and proper structure of the Union, therefore, we behold a republican remedy for the diseases most incident to republican government. And according to the degree of pleasure and pride we feel in being republicans, ought to be our zeal in cherishing the spirit and supporting the character of Federalists.</p>
+
+      <p class="publius">Publius</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     FEDERALIST NO. 58
+════════════════════════════════════════ -->
+<div id="fp58" class="section">
+  <div class="paper-wrap">
+    <div class="paper-hd">
+      <div class="eyebrow">The Federalist Papers &mdash; No. 58</div>
+      <h2>Objection That the Number of Members Will Not Be Augmented</h2>
+      <div class="subtitle">James Madison, February 20, 1788</div>
+    </div>
+
+    <div class="legend-bar">
+      <div class="swatch"></div>
+      Hover over highlighted text to reveal the classical source and analysis.
+    </div>
+
+    <div class="paper-salutation">To the People of the State of New York:</div>
+
+    <div class="paper-body">
+
+      <p class="drop-cap">The remaining charge against the House of Representatives, which I am to examine, is grounded on a supposition that the number of members will not be augmented from time to time, as the progress of population may demand. It has been admitted, that this objection, if well supported, would have great weight. The following observations will show that, like most other objections against the Constitution, <span class="annotated" data-id="fp58-sallust">it can only proceed from a partial view of the subject, or from a jealousy which discolors and disfigures every object which is beheld</span>.</p>
+
+      <p>Those who urge the objection seem not to have recollected that the federal Constitution will not suffer by a comparison with the State constitutions, in the security provided for a gradual augmentation of the number of representatives. The number which is to prevail in the first instance is declared to be temporary. Its duration is limited to the short term of three years. Within every successive term of ten years a census of inhabitants is to be repeated. The unequivocal objects of these regulations are, first, to readjust, from time to time, the apportionment of representatives to the number of inhabitants, under the single exception that each State shall have one representative at least; secondly, to augment the number of representatives at the same periods, under the sole limitation that the whole number shall not exceed one for every thirty thousand inhabitants. If we review the constitutions of the several States, we shall find that some of them contain no determinate regulations on this subject, that others correspond pretty much on this point with the federal Constitution, and that the most effectual security in any of them is resolvable into a mere directory provision.</p>
+
+      <p>As far as experience has taken place on this subject, a gradual increase of representatives under the State constitutions has at least kept pace with that of the constituents, and it appears that the former have been as ready to concur in such measures as the latter have been to call for them.</p>
+
+      <p>There is a peculiarity in the federal Constitution which insures a watchful attention in a majority both of the people and of their representatives to a constitutional augmentation of the latter. <span class="annotated" data-id="fp58-aristotle2">The peculiarity lies in this, that one branch of the legislature is a representation of citizens, the other of the States</span>: in the former, consequently, the larger States will have most weight; in the latter, the advantage will be in favor of the smaller States. From this circumstance it may with certainty be inferred that the larger States will be strenuous advocates for increasing the number and weight of that part of the legislature in which their influence predominates. And it so happens that four only of the largest will have a majority of the whole votes in the House of Representatives.</p>
+
+      <p>Should the representatives or people, therefore, of the smaller States oppose at any time a reasonable addition of members, a coalition of a very few States will be sufficient to overrule the opposition; a coalition which, notwithstanding the rivalship and local prejudices which might prevent it on ordinary occasions, would not fail to take place, when not merely prompted by common interest, but justified by equity and the principles of the Constitution. It may be alleged, perhaps, that the Senate would be prompted by like motives to an adverse coalition; and as their concurrence would be indispensable, the just and constitutional views of the other branch might be defeated. This is the difficulty which has probably created the most serious apprehensions in the jealous friends of a numerous representation. Fortunately it is among the difficulties which, existing only in appearance, vanish on a close and accurate inspection. The following reflections will, if I mistake not, be admitted to be conclusive and satisfactory on this point. Notwithstanding the equal authority which will subsist between the two houses on all legislative subjects, except the originating of money bills, <span class="annotated" data-id="fp58-cicero">it cannot be doubted that the House, composed of the greater number of members, when supported by the more powerful States, and speaking the known and determined sense of a majority of the people, will have no small advantage in a question depending on the comparative firmness of the two houses</span>.</p>
+
+      <p>This advantage must be increased by the consciousness, felt by the same side of being supported in its demands by right, by reason, and by the Constitution; and the consciousness, on the opposite side, of contending against the force of all these solemn considerations. It is farther to be considered, that in the gradation between the smallest and largest States, there are several, which, though most likely in general to arrange themselves among the former are too little removed in extent and population from the latter, to second an opposition to their just and legitimate pretensions. Hence it is by no means certain that a majority of votes, even in the Senate, would be unfriendly to proper augmentations in the number of representatives. It will not be looking too far to add, that the senators from all the new States may be gained over to the just views of the House of Representatives, by an expedient too obvious to be overlooked. As these States will, for a great length of time, advance in population with peculiar rapidity, they will be interested in frequent reapportionments of the representatives to the number of inhabitants. The large States, therefore, who will prevail in the House of Representatives, will have nothing to do but to make reapportionments and augmentations mutually conditions of each other; and the senators from all the most growing States will be bound to contend for the latter, by the interest which their States will feel in the former. These considerations seem to afford ample security on this subject, and ought alone to satisfy all the doubts and fears which have been indulged with regard to it. Admitting, however, that they should all be insufficient to subdue the unjust policy of the smaller States, or their predominant influence in the councils of the Senate, a constitutional and infallible resource still remains with the larger States, by which they will be able at all times to accomplish their just purposes.</p>
+
+      <p>The House of Representatives cannot only refuse, but they alone can propose, the supplies requisite for the support of government. They, in a word, hold the purse — that powerful instrument by which <span class="annotated" data-id="fp58-livy">we behold, in the history of the British Constitution, an infant and humble representation of the people gradually enlarging the sphere of its activity and importance</span>, and finally reducing, as far as it seems to have wished, all the overgrown prerogatives of the other branches of the government. <span class="annotated" data-id="fp58-polybius">This power over the purse may, in fact, be regarded as the most complete and effectual weapon with which any constitution can arm the immediate representatives of the people, for obtaining a redress of every grievance, and for carrying into effect every just and salutary measure.</span> But will not the House of Representatives be as much interested as the Senate in maintaining the government in its proper functions, and will they not therefore be unwilling to stake its existence or its reputation on the pliancy of the Senate? Or, if such a trial of firmness between the two branches were hazarded, would not the one be as likely first to yield as the other? These questions will create no difficulty with those who reflect that in all cases the smaller the number, and the more permanent and conspicuous the station, of men in power, the stronger must be the interest which they will individually feel in whatever concerns the government.</p>
+
+      <p>Those who represent the dignity of their country in the eyes of other nations, will be particularly sensible to every prospect of public danger, or of dishonorable stagnation in public affairs. To those causes we are to ascribe the continual triumph of the British House of Commons over the other branches of the government, whenever the engine of a money bill has been employed. An absolute inflexibility on the side of the latter, although it could not have failed to involve every department of the state in the general confusion, has neither been apprehended nor experienced. The utmost degree of firmness that can be displayed by the federal Senate or President, will not be more than equal to a resistance in which they will be supported by constitutional and patriotic principles. In this review of the Constitution of the House of Representatives, I have passed over the circumstances of economy, which, in the present state of affairs, might have had some effect in lessening the temporary number of representatives, and a disregard of which would probably have been as rich a theme of declamation against the Constitution as has been shown by the smallness of the number proposed. I omit also any remarks on the difficulty which might be found, under present circumstances, in engaging in the federal service a large number of such characters as the people will probably elect.</p>
+
+      <p>One observation, however, I must be permitted to add on this subject as claiming, in my judgment, a very serious attention. It is, that in all legislative assemblies the greater the number composing them may be, the fewer will be the men who will in fact direct their proceedings. <span class="annotated" data-id="fp58-aristotle1">In the first place, the more numerous an assembly may be, of whatever characters composed, the greater is known to be the ascendency of passion over reason.</span> In the next place, the larger the number, the greater will be the proportion of members of limited information and of weak capacities. Now, it is precisely on characters of this description that the eloquence and address of the few are known to act with all their force. In the ancient republics, where the whole body of the people assembled in person, a single orator, or an artful statesman, was generally seen to rule with as complete a sway as if a sceptre had been placed in his single hand.</p>
+
+      <p>On the same principle, the more multitudinous a representative assembly may be rendered, the more it will partake of the infirmities incident to collective meetings of the people. <span class="annotated" data-id="fp58-seneca">Ignorance will be the dupe of cunning, and passion the slave of sophistry and declamation.</span> The people can never err more than in supposing that by multiplying their representatives beyond a certain limit, they strengthen the barrier against the government of a few. Experience will forever admonish them that, on the contrary, after securing a sufficient number for the purposes of safety, of local information, and of diffusive sympathy with the whole society, they will counteract their own views by every addition to their representatives. <span class="annotated" data-id="fp58-tacitus">The countenance of the government may become more democratic, but the soul that animates it will be more oligarchic.</span> The machine will be enlarged, but the fewer, and often the more secret, will be the springs by which its motions are directed.</p>
+
+      <p>As connected with the objection against the number of representatives, may properly be here noticed, that which has been suggested against the number made competent for legislative business. It has been said that more than a majority ought to have been required for a quorum; and in particular cases, if not in all, more than a majority of a quorum for a decision. That some advantages might have resulted from such a precaution, cannot be denied. It might have been an additional shield to some particular interests, and another obstacle generally to hasty and partial measures. But these considerations are outweighed by the inconveniences in the opposite scale.</p>
+
+      <p>In all cases where justice or the general good might require new laws to be passed, or active measures to be pursued, the fundamental principle of free government would be reversed. It would be no longer the majority that would rule: the power would be transferred to the minority. Were the defensive privilege limited to particular cases, an interested minority might take advantage of it to screen themselves from equitable sacrifices to the general weal, or, in particular emergencies, to extort unreasonable indulgences. Lastly, it would facilitate and foster the baneful practice of secessions; a practice which has shown itself even in States where a majority only is required; a practice subversive of all the principles of order and regular government; a practice which leads more directly to public convulsions, and the ruin of popular governments, than any other which has yet been displayed among us.</p>
+
+      <p class="publius">Publius</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     FEDERALIST NO. 70
+════════════════════════════════════════ -->
+<div id="fp70" class="section">
+  <div class="paper-wrap">
+    <div class="paper-hd">
+      <div class="eyebrow">The Federalist Papers &mdash; No. 70</div>
+      <h2>The Executive Department Further Considered</h2>
+      <div class="subtitle">Alexander Hamilton, March 15, 1788</div>
+    </div>
+
+    <div class="legend-bar">
+      <div class="swatch"></div>
+      Hover over highlighted text to reveal the classical source and analysis.
+    </div>
+
+    <div class="paper-salutation">To the People of the State of New York:</div>
+
+    <div class="paper-body">
+
+      <p class="drop-cap">There is an idea, which is not without its advocates, that a vigorous Executive is inconsistent with the genius of republican government. The enlightened well-wishers to this species of government must at least hope that the supposition is destitute of foundation; since they can never admit its truth, without at the same time admitting the condemnation of their own principles. Energy in the Executive is a leading character in the definition of good government. It is essential to the protection of the community against foreign attacks; it is not less essential to the steady administration of the laws; to the protection of property against those irregular and high-handed combinations which sometimes interrupt the ordinary course of justice; <span class="annotated" data-id="fp70-cicero">to the security of liberty against the enterprises and assaults of ambition, of faction, and of anarchy</span>. <span class="annotated" data-id="fp70-livy1">Every man the least conversant in Roman story, knows how often that republic was obliged to take refuge in the absolute power of a single man, under the formidable title of Dictator</span>, as well against the intrigues of ambitious individuals who aspired to the tyranny, and the seditions of whole classes of the community whose conduct threatened the existence of all government, as against the invasions of external enemies who menaced the conquest and destruction of Rome.</p>
+
+      <p>There can be no need, however, to multiply arguments or examples on this head. A feeble Executive implies a feeble execution of the government. A feeble execution is but another phrase for a bad execution; and a government ill executed, whatever it may be in theory, must be, in practice, a bad government.</p>
+
+      <p>Taking it for granted, therefore, that all men of sense will agree in the necessity of an energetic Executive, it will only remain to inquire, what are the ingredients which constitute this energy? How far can they be combined with those other ingredients which constitute safety in the republican sense? And how far does this combination characterize the plan which has been reported by the convention?</p>
+
+      <p>The ingredients which constitute energy in the Executive are, first, unity; secondly, duration; thirdly, an adequate provision for its support; fourthly, competent powers.</p>
+
+      <p>The ingredients which constitute safety in the republican sense are, first, a due dependence on the people, secondly, a due responsibility.</p>
+
+      <p>Those politicians and statesmen who have been the most celebrated for the soundness of their principles and for the justice of their views, have declared in favor of a single Executive and a numerous legislature. They have with great propriety, considered energy as the most necessary qualification of the former, and have regarded this as most applicable to power in a single hand, while they have, with equal propriety, considered the latter as best adapted to deliberation and wisdom, and best calculated to conciliate the confidence of the people and to secure their privileges and interests.</p>
+
+      <p>That unity is conducive to energy will not be disputed. <span class="annotated" data-id="fp70-dionysius">Decision, activity, secrecy, and despatch will generally characterize the proceedings of one man in a much more eminent degree than the proceedings of any greater number</span>; and in proportion as the number is increased, these qualities will be diminished.</p>
+
+      <p>This unity may be destroyed in two ways: either by vesting the power in two or more magistrates of equal dignity and authority; or by vesting it ostensibly in one man, subject, in whole or in part, to the control and co-operation of others, in the capacity of counsellors to him. <span class="annotated" data-id="fp70-brutus">Of the first, the two Consuls of Rome may serve as an example</span>; of the last, we shall find examples in the constitutions of several of the States. New York and New Jersey, if I recollect right, are the only States which have intrusted the executive authority wholly to single men.<sup class="fn"><a href="https://avalon.law.yale.edu/18th_century/fed70.asp#1" target="_blank" rel="noopener">1</a></sup> Both these methods of destroying the unity of the Executive have their partisans; but the votaries of an executive council are the most numerous. They are both liable, if not to equal, to similar objections, and may in most lights be examined in conjunction.</p>
+
+      <p>The experience of other nations will afford little instruction on this head. As far, however, as it teaches any thing, it teaches us not to be enamoured of plurality in the Executive. <span class="annotated" data-id="fp70-polybius">We have seen that the Achaeans, on an experiment of two Praetors, were induced to abolish one.</span> <span class="annotated" data-id="fp70-plutarch1">The Roman history records many instances of mischiefs to the republic from the dissensions between the Consuls</span>, and between the military Tribunes, who were at times substituted for the Consuls. But it gives us no specimens of any peculiar advantages derived to the state from the circumstance of the plurality of those magistrates. That the dissensions between them were not more frequent or more fatal, is a matter of astonishment, until we advert to the singular position in which the republic was almost continually placed, and to the prudent policy pointed out by the circumstances of the state, and pursued by the Consuls, of making a division of the government between them. The patricians engaged in a perpetual struggle with the plebeians for the preservation of their ancient authorities and dignities; the Consuls, who were generally chosen out of the former body, were commonly united by the personal interest they had in the defense of the privileges of their order. In addition to this motive of union, after the arms of the republic had considerably expanded the bounds of its empire, it became an established custom with the Consuls to divide the administration between themselves by lot — one of them remaining at Rome to govern the city and its environs, the other taking the command in the more distant provinces. This expedient must, no doubt, have had great influence in preventing those collisions and rivalships which might otherwise have embroiled the peace of the republic.</p>
+
+      <p>But quitting the dim light of historical research, attaching ourselves purely to the dictates of reason and good sense, we shall discover much greater cause to reject than to approve the idea of plurality in the Executive, under any modification whatever.</p>
+
+      <p>Wherever two or more persons are engaged in any common enterprise or pursuit, there is always danger of difference of opinion. If it be a public trust or office, in which they are clothed with equal dignity and authority, there is peculiar danger of personal emulation and even animosity. From either, and especially from all these causes, the most bitter dissensions are apt to spring. Whenever these happen, they lessen the respectability, weaken the authority, and distract the plans and operation of those whom they divide. If they should unfortunately assail the supreme executive magistracy of a country, consisting of a plurality of persons, they might impede or frustrate the most important measures of the government, in the most critical emergencies of the state. And what is still worse, they might split the community into the most violent and irreconcilable factions, adhering differently to the different individuals who composed the magistracy.</p>
+
+      <p>Men often oppose a thing, merely because they have had no agency in planning it, or because it may have been planned by those whom they dislike. But if they have been consulted, and have happened to disapprove, opposition then becomes, in their estimation, an indispensable duty of self-love. They seem to think themselves bound in honor, and by all the motives of personal infallibility, to defeat the success of what has been resolved upon contrary to their sentiments. Men of upright, benevolent tempers have too many opportunities of remarking, with horror, to what desperate lengths this disposition is sometimes carried, and how often the great interests of society are sacrificed to the vanity, to the conceit, and to the obstinacy of individuals, who have credit enough to make their passions and their caprices interesting to mankind. Perhaps the question now before the public may, in its consequences, afford melancholy proofs of the effects of this despicable frailty, or rather detestable vice, in the human character.</p>
+
+      <p>Upon the principles of a free government, inconveniences from the source just mentioned must necessarily be submitted to in the formation of the legislature; but it is unnecessary, and therefore unwise, to introduce them into the constitution of the Executive. It is here too that they may be most pernicious. In the legislature, promptitude of decision is oftener an evil than a benefit. The differences of opinion, and the jarrings of parties in that department of the government, though they may sometimes obstruct salutary plans, yet often promote deliberation and circumspection, and serve to check excesses in the majority. When a resolution too is once taken, the opposition must be at an end. That resolution is a law, and resistance to it punishable. But no favorable circumstances palliate or atone for the disadvantages of dissension in the executive department. Here, they are pure and unmixed. There is no point at which they cease to operate. They serve to embarrass and weaken the execution of the plan or measure to which they relate, from the first step to the final conclusion of it. They constantly counteract those qualities in the Executive which are the most necessary ingredients in its composition, vigor and expedition, and this without any counterbalancing good. <span class="annotated" data-id="fp70-plutarch2">In the conduct of war, in which the energy of the Executive is the bulwark of the national security, every thing would be to be apprehended from its plurality.</span></p>
+
+      <p>It must be confessed that these observations apply with principal weight to the first case supposed — that is, to a plurality of magistrates of equal dignity and authority — a scheme, the advocates for which are not likely to form a numerous sect; but they apply, though not with equal, yet with considerable weight to the project of a council, whose concurrence is made constitutionally necessary to the operations of the ostensible Executive. An artful cabal in that council would be able to distract and to enervate the whole system of administration. If no such cabal should exist, the mere diversity of views and opinions would alone be sufficient to tincture the exercise of the executive authority with a spirit of habitual feebleness and dilatoriness.</p>
+
+      <p>But one of the weightiest objections to a plurality in the Executive, and which lies as much against the last as the first plan, is, that it tends to conceal faults and destroy responsibility. Responsibility is of two kinds — to censure and to punishment. The first is the more important of the two, especially in an elective office. Man, in public trust, will much oftener act in such a manner as to render him unworthy of being any longer trusted, than in such a manner as to make him obnoxious to legal punishment. But the multiplication of the Executive adds to the difficulty of detection in either case. It often becomes impossible, amidst mutual accusations, to determine on whom the blame or the punishment of a pernicious measure, or series of pernicious measures, ought really to fall. It is shifted from one to another with so much dexterity, and under such plausible appearances, that the public opinion is left in suspense about the real author. The circumstances which may have led to any national miscarriage or misfortune are sometimes so complicated that, where there are a number of actors who may have had different degrees and kinds of agency, though we may clearly see upon the whole that there has been mismanagement, yet it may be impracticable to pronounce to whose account the evil which may have been incurred is truly chargeable. "I was overruled by my council. The council were so divided in their opinions that it was impossible to obtain any better resolution on the point." These and similar pretexts are constantly at hand, whether true or false. And who is there that will either take the trouble or incur the odium, of a strict scrutiny into the secret springs of the transaction? Should there be found a citizen zealous enough to undertake the unpromising task, if there happen to be collusion between the parties concerned, how easy it is to clothe the circumstances with so much ambiguity, as to render it uncertain what was the precise conduct of any of those parties?</p>
+
+      <p>It is evident from these considerations, that the plurality of the Executive tends to deprive the people of the two greatest securities they can have for the faithful exercise of any delegated power, first, the restraints of public opinion, which lose their efficacy, as well on account of the division of the censure attendant on bad measures among a number, as on account of the uncertainty on whom it ought to fall; and, secondly, the opportunity of discovering with facility and clearness the misconduct of the persons they trust, in order either to their removal from office or to their actual punishment in cases which admit of it.</p>
+
+      <p>In England, the king is a perpetual magistrate; and it is a maxim which has obtained for the sake of the public peace, that he is unaccountable for his administration, and his person sacred. Nothing, therefore, can be wiser in that kingdom, than to annex to the king a constitutional council, who may be responsible to the nation for the advice they give. Without this, there would be no responsibility whatever in the executive department — an idea inadmissible in a free government. But even there the king is not bound by the resolutions of his council, though they are answerable for the advice they give. He is the absolute master of his own conduct in the exercise of his office, and may observe or disregard the counsel given to him at his sole discretion.</p>
+
+      <p>But in a republic, where every magistrate ought to be personally responsible for his behavior in office — the reason which in the British Constitution dictates the propriety of a council, not only ceases to apply, but turns against the institution. In the monarchy of Great Britain, it furnishes a substitute for the prohibited responsibility of the chief magistrate, which serves in some degree as a hostage to the national justice for his good behavior. In the American republic, it would serve to destroy, or would greatly diminish, the intended and necessary responsibility of the Chief Magistrate himself.</p>
+
+      <p>The idea of a council to the Executive, which has so generally obtained in the State constitutions, has been derived from that maxim of republican jealousy which considers power as safer in the hands of a number of men than of a single man. If the maxim should be admitted to be applicable to the case, I should contend that the advantage on that side would not counterbalance the numerous disadvantages on the opposite side. But I do not think the rule at all applicable to the executive power. I clearly concur in opinion, in this particular, with a writer whom the celebrated Junius pronounces to be "deep, solid, and ingenious," that "the executive power is more easily confined when it is one";<sup class="fn"><a href="https://avalon.law.yale.edu/18th_century/fed70.asp#2" target="_blank" rel="noopener">2</a></sup> that it is far more safe there should be a single object for the jealousy and watchfulness of the people; and, in a word, that all multiplication of the Executive is rather dangerous than friendly to liberty.</p>
+
+      <p>A little consideration will satisfy us, that the species of security sought for in the multiplication of the Executive, is unattainable. Numbers must be so great as to render combination difficult, or they are rather a source of danger than of security. The united credit and influence of several individuals must be more formidable to liberty, than the credit and influence of either of them separately. When power, therefore, is placed in the hands of so small a number of men, as to admit of their interests and views being easily combined in a common enterprise, by an artful leader, it becomes more liable to abuse, and more dangerous when abused, than if it be lodged in the hands of one man; who, from the very circumstance of his being alone, will be more narrowly watched and more readily suspected, and who cannot unite so great a mass of influence as when he is associated with others. <span class="annotated" data-id="fp70-livy2">The Decemvirs of Rome, whose name denotes their number,<sup class="fn"><a href="https://avalon.law.yale.edu/18th_century/fed70.asp#3" target="_blank" rel="noopener">3</a></sup> were more to be dreaded in their usurpation than any <span class="caps">one</span> of them would have been.</span> No person would think of proposing an Executive much more numerous than that body; from six to a dozen have been suggested for the number of the council. The extreme of these numbers, is not too great for an easy combination; and from such a combination America would have more to fear, than from the ambition of any single individual. A council to a magistrate, who is himself responsible for what he does, are generally nothing better than a clog upon his good intentions, are often the instruments and accomplices of his bad and are almost always a cloak to his faults.</p>
+
+      <p>I forbear to dwell upon the subject of expense; though it be evident that if the council should be numerous enough to answer the principal end aimed at by the institution, the salaries of the members, who must be drawn from their homes to reside at the seat of government, would form an item in the catalogue of public expenditures too serious to be incurred for an object of equivocal utility. I will only add that, prior to the appearance of the Constitution, I rarely met with an intelligent man from any of the States, who did not admit, as the result of experience, that the unity of the executive of this State was one of the best of the distinguishing features of our constitution.</p>
+
+      <p class="publius">Publius</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Section switching ──
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(function(s) {
+    s.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  if (btn) btn.classList.add('active');
+}
+
+// ── Annotation data ──
+const annotations = {
+  // ─── Federalist No. 10 ───
+  'fp10-xenophon': {
+    author: 'Xenophon',
+    work: 'Constitution of the Spartans',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Xenophon/Constitution_of_the_Lacedaemonians*.html',
+    quote: `"Lycurgus, who gave them the laws that they obey, and to which they owe their prosperity, I do regard with wonder; and I think that he reached the utmost limit of wisdom. For it was not by imitating other states, but by devising a system utterly different from that of most others, that he made his country pre-eminently prosperous."`,
+    analysis: `Xenophon argues that structural design can create political stability, a notion Madison embraces. However, while Xenophon admires Lycurgus' social engineering, Madison introduces a more complex system that harnesses the negative consequences of a diverse society into a productive, stable nation.`
+  },
+  'fp10-polybius': {
+    author: 'Polybius',
+    work: 'The Histories',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/6*.html',
+    quote: `"That all existing things are subject to decay and change is a truth that scarcely needs proof; for the course of nature is sufficient to force this conviction on us... When a state has weathered many great perils and subsequently attains to supremacy and uncontested sovereignty, it is evident that under the influence of long established prosperity, life will become more extravagant and the citizens more fierce in their rivalry regarding office... For now, stirred to fury and swayed by passion in all their counsels, they will no longer consent to obey or even to be the equals of the ruling caste, but will demand the lion's share for themselves. When this happens, the state will change its name to the finest sounding of all, freedom and democracy, but will change its nature to the worst thing of all, mob-rule."`,
+    analysis: `Polybius' theory of anacyclosis frames political decay as inevitable, but Madison rejects his determinism. His republican remedy attempts to redirect instability into a controlled equilibrium, preventing any one faction from dominating another.`
+  },
+  'fp10-cicero': {
+    author: 'Cicero',
+    work: 'De Re Publica',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cicero/de_Re_Publica/1*.html',
+    quote: `"Well, then, a commonwealth is the property of a people. But a people is not any collection of human beings brought together in any sort of way, but an assemblage of people in large numbers associated in an agreement with respect to justice and a partnership for the common good."`,
+    analysis: `Cicero defines the republic as a community oriented toward justice as the common good, which Madison caveats — describing how large societies can be fractured by a fundamental disagreement on what constitutes the common interest. Madison solves this procedurally, constructing a system where such disputes are solved through deliberate competition, not tyranny from a majority.`
+  },
+  'fp10-thucydides': {
+    author: 'Thucydides',
+    work: 'History of the Peloponnesian War',
+    url: 'https://classics.mit.edu/Thucydides/pelopwar.html',
+    quote: `"The cause of all these evils was the lust for power arising from greed and ambition; and from these passions proceeded the violence of parties once engaged in contention."`,
+    analysis: `Madison's idea of factions aligns with Thucydides' concept of stasis. But while Thucydides sees faction as an inevitable feature of human nature, Madison believes that factionalism can be systemically managed through constitutional design, transforming Thucydides' diagnosis into a problem to be cured.`
+  },
+  'fp10-lycurgus': {
+    author: 'Lycurgus (via Plutarch)',
+    work: 'Life of Lycurgus',
+    url: 'https://classics.mit.edu/Plutarch/lycurgus.html',
+    quote: `"…he introduced his third and most exquisite political device, namely, the institution of common messes, so that they might eat with one another in companies, of common and specified foods, and not take their meals at home, reclining on costly couches at costly tables, delivering themselves into the hands of servants and cooks to be fattened in the dark, like voracious animals, and ruining not only their characters but also their bodies, by surrendering them to every desire and all sorts of surfeit..."`,
+    analysis: `Lycurgus' reform to deliberately build a more homogeneous society and suppress excess were implemented to stem factionalism in Sparta. Madison disagrees with this structure, arguing that it limits personal liberty. Instead of trying to fix the fundamental problems that lead to instability, Madison argues for managing the political ramifications.`
+  },
+  'fp10-plutarch': {
+    author: 'Plutarch',
+    work: 'Life of Solon (Parallel Lives)',
+    url: 'https://classics.mit.edu/Plutarch/solon.html',
+    quote: `"But the Athenians, now that the Cylonian disturbance was over and the polluted persons banished, relapsed into their old disputes about the form of government, the city being divided into as many parties as there were diversities in its territory. The Hill-men favoured an extreme democracy; the Plain-men an extreme oligarchy; the Shore-men formed a third party, which preferred an intermediate and mixed form of government, was opposed to the other two, and prevented either from gaining the ascendancy."`,
+    analysis: `Plutarch's account of Athenian factionalism emphasizes the role of diversity in political conflict, which Madison interprets as a fundamental feature of politics in a large nation. Madison therefore designs institutions that move beyond trying to eliminate factionalism and instead leverage it to a positive end.`
+  },
+  'fp10-aristotle': {
+    author: 'Aristotle',
+    work: 'Politics',
+    url: 'https://classics.mit.edu/Aristotle/politics.html',
+    quote: `"Thus it is manifest that the best political community is formed by citizens of the middle class, and that those states are likely to be well-administered in which the middle class is large, and stronger if possible than both the other classes, or at any rate than either singly; for the addition of the middle class turns the scale, and prevents either of the extremes from being dominant."`,
+    analysis: `Madison agrees with Aristotle that economic disparity is the root of political division, but diverges on how to create political stability. While Aristotle wanted to cultivate a broad middle class, Madison wanted to distribute political power across a large republic. Madison challenges traditional assumptions about class structure begetting stability, advocating instead for a systemic structure that harnesses conflict to ensure stability.`
+  },
+  'fp10-solon': {
+    author: 'Solon',
+    work: 'Fragments',
+    url: 'https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:2008.01.0542',
+    quote: `"I stood with a mighty shield cast round both sides and did not allow either to have an unjust victory."`,
+    analysis: `Madison echoes Solon's role as a balanced lawmaker to highlight the difference between personal and structural solutions to political problems. Solon represents the idea that an enlightened mediator can stand above factionalism to restore stability — a notion which Madison rejects. He instead posits a system that pits competing interests against each other, believing that doing so is the only way to systemically prevent the forces of factionalism from tearing a nation apart.`
+  },
+  'fp10-isocrates': {
+    author: 'Isocrates',
+    work: 'Areopagiticus',
+    url: 'https://www.gutenberg.org/cache/epub/608/pg608-images.html',
+    quote: `"...I could name him who from his private house wrote that discourse to the Parliament of Athens, that persuades them to change the form of democracy which was then established. Such honour was done in those days to men who professed the study of wisdom and eloquence, not only in their own country, but in other lands, that cities and signiories heard them gladly, and with great respect, if they had aught in public to admonish the state."`,
+    analysis: `Isocrates argues that democracies must be guided by educated, capable elites — a concept which Madison attempts to institutionalize. He does so by creating a system which filters public opinion through elected representatives before ideas become policy.`
+  },
+  'fp10-plato': {
+    author: 'Plato',
+    work: 'The Republic',
+    url: 'https://classics.mit.edu/Plato/republic.html',
+    quote: `"…democracy, which is a charming form of government, full of variety and disorder, and dispensing a sort of equality to equals and unequals alike."`,
+    analysis: `Although many of the founders disagreed with Plato, none did so more vehemently than James Madison. A notorious elitist, Madison firmly argued in favor of a republican form of government, believing that only the most-educated would gain power — preventing one of the pitfalls of democracy where everyone, regardless of education, would have equal say.`
+  },
+
+  // ─── Federalist No. 58 ───
+  'fp58-sallust': {
+    author: 'Sallust',
+    work: 'The Conspiracy of Catiline',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Sallust/Bellum_Catilinae*.html',
+    quote: `"Now the institution of parties and factions, with all their attendant evils, originated at Rome a few years before this as the result of peace and of an abundance of everything that mortals prize most highly. For before the destruction of Carthage the people and senate of Rome together governed the republic peacefully and with moderation. There was no strife among the citizens either for glory or for power; fear of the enemy preserved the good morals of the state. But when the minds of the people were relieved of that dread, wantonness and arrogance naturally arose, vices which are fostered by prosperity."`,
+    analysis: `Sallust explains how the corrosive effects of ambition contributed to Rome's decline. While accepting the basic premise, Madison believes that they can be suppressed through a governmental structure that uses ambition to maintain a stable equilibrium where multiple political identities can coexist.`
+  },
+  'fp58-aristotle2': {
+    author: 'Aristotle',
+    work: 'Politics',
+    url: 'https://classics.mit.edu/Aristotle/politics.html',
+    quote: `"Great then is the good fortune of a state in which the citizens have a moderate and sufficient property; for where some possess much, and the others nothing, there may arise an extreme democracy, or a pure oligarchy; or a tyranny may grow out of either extreme... But it is not so likely to arise out of the middle constitutions and those akin to them."`,
+    analysis: `Aristotle treats the size and composition of an electorate as integral to the stability of a society, emphasizing the moderating role of the middle class. Madison, on the other hand, focuses on the political structures of the government to institutionalize stability through the structure of governing bodies.`
+  },
+  'fp58-cicero': {
+    author: 'Cicero',
+    work: 'De Re Publica',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cicero/de_Re_Publica/1*.html',
+    quote: `"Thus between the obstinacy of one, and the temerity of many, the better class have possessed themselves of the middle and least turbulent of all the situations: by whom if the commonwealth is well administered, the people relieved from all care and thought, must necessarily be happy: enjoying their independence through the labours of those, whose duty it is to preserve it to them..."`,
+    analysis: `Cicero insists on balance being foundational to republic stability, which Madison amends to be achieved through competitive equilibrium. Madison advocates for the common-man's House to check the elites' Senate — rivalry ensures neither branch can dominate the other.`
+  },
+  'fp58-livy': {
+    author: 'Livy',
+    work: 'Ab Urbe Condita',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Livy/home.html',
+    quote: `"…proposed a law to the people that plebeian magistrates should be elected at the comitia by tribes. A matter of no trifling moment was now being brought forward, under an aspect at first sight by no means alarming; but one which in reality deprived the patricians of all power to elect whatever tribunes they pleased by the suffrages of their clients."`,
+    analysis: `Livy's account of the plebians' gradual acquisition of power demonstrates how political authority can be eroded from the ground-up. Madison uses historical examples to show how the House of Representatives continually gains political centrality as a structure capable of accommodating democratic growth.`
+  },
+  'fp58-polybius': {
+    author: 'Polybius',
+    work: 'The Histories',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/6*.html',
+    quote: `"Again it is the people who bestow office on the deserving, the noblest regard of virtue in a state; the people have the power of approving or rejecting laws, and what is most important of all, they deliberate on the question of war and peace. Further in the case of alliances, terms of peace, and treaties, it is the people who ratify all these or the reverse. Thus here again one might plausibly say that the people's share in the government is the greatest, and that the constitution is a democratic one."`,
+    analysis: `Polybius identifies power in institutional terms, with which Madison agrees. However, Madison goes further, isolating the power to spend as the most important power, and therefore the fundamental mechanism of democratic control. As such, Madison assigns this power to the House, which is the closest Federal body to the electorate.`
+  },
+  'fp58-aristotle1': {
+    author: 'Aristotle',
+    work: 'Politics',
+    url: 'https://classics.mit.edu/Aristotle/politics.html',
+    quote: `"There are three elements in each constitution... first, the deliberative; second, the offices; and third, the judicial." (Politics, VI.14)`,
+    analysis: `Aristotle's division of governmental functions provides a basis for Madison to structure competing branches against each other. By limiting the size of each body, but having multiple branches, Madison tactfully maintains "reason" in each while still preserving the strengths of a large republic.`
+  },
+  'fp58-seneca': {
+    author: 'Seneca',
+    work: 'Anger, Mercy, Revenge (De Ira)',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Seneca/de_Ira/1*.html',
+    quote: `"Accordingly, some wise men have said that anger is a brief Madness: for it's no less lacking in self-control, forgetful of decency, unmindful of personal ties, unrelentingly intent on its goal, shut off from rational deliberation, stirred for no substantial reason, unsuited to discerning what's fair and true, just like a collapsing building that's reduced to rubble even as it crushes what it falls upon."`,
+    analysis: `Madison builds on Seneca's analysis of anger as a destabilizing force by additionally highlighting how collective decision-making can be manipulated by rhetoric. Madison attempts to suppress this phenomenon by limiting the size and scope of political branches, requiring consensus across multiple deliberative bodies.`
+  },
+  'fp58-tacitus': {
+    author: 'Tacitus',
+    work: 'Annals',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Tacitus/Annals/home.html',
+    quote: `"…after laying down his triumviral title and proclaiming himself a simple consul content with tribunician authority to safeguard the commons, he first conciliated the army by gratuities, the populace by cheapened corn, the world by the amenities of peace, then step by step began to make his ascent and to unite in his own person the functions of the senate, the magistracy, and the legislature."`,
+    analysis: `Tacitus describes the fragility of Republican systems, explaining how institutions can become less-democratic through the concentration of power. Madison therefore argues in favor of greater transparency and accountability within the new government, aiming to prevent the corruption Tacitus details.`
+  },
+
+  // ─── Federalist No. 70 ───
+  'fp70-cicero': {
+    author: 'Cicero',
+    work: 'Philippics',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cicero/Philippics/home.html',
+    quote: `"Altogether, O conscript fathers, I shall regulate the whole of my conduct in this affair, not by any consideration of my own danger, but by the advantage of the republic. And, as I have plenty of time, I think that it behoves me to deliberate upon that over and over again, and to adopt that line of conduct which I shall judge to be most beneficial to the republic."`,
+    analysis: `Cicero's speech against Catiline demonstrates the necessity of decisive leadership in moments of crisis. Hamilton counterintuitively argues that liberty depends on a vigorous and responsive executive capable of adequately responding to threats, reframing executive power as essential to the republic's continuity.`
+  },
+  'fp70-livy1': {
+    author: 'Livy',
+    work: 'Ab Urbe Condita',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Livy/home.html',
+    quote: `"They chose men of consular dignity, for so the law, made for the election of a dictator, ordained."`,
+    analysis: `Hamilton references Livy's account of Roman dictatorship to show the paradox that in tenuous moments for a Republic, a strong leader is often required to preserve liberty. Hamilton adopts this axiom, institutionalizing a unitary executive within the standard structure of the Constitution, one that is still beholden to the Republican principles they are entrusted to protect.`
+  },
+  'fp70-dionysius': {
+    author: 'Dionysius of Halicarnassus',
+    work: 'Roman Antiquities',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Dionysius_of_Halicarnassus/home.html',
+    quote: `"Romulus, who was thus chosen king by both men and gods, is allowed to have been a man of great military ability and personal bravery and of the greatest sagacity in instituting the best kind of government... regarded as the most self-sufficient of all political systems both for peace and for war."`,
+    analysis: `Dionysius emphasizes the effectiveness of concentrated executive power in both war and governance, which Hamilton draws on to argue that essential qualities for leadership — such as speed and decisiveness — are inherently incompatible with plurality. Hamilton designs the presidency to preserve these capabilities while still maintaining oversight through constitutional checks and balances.`
+  },
+  'fp70-brutus': {
+    author: 'Brutus (via Livy)',
+    work: 'Ab Urbe Condita',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Livy/home.html',
+    quote: `"Brutus was, with the consent of his colleague, first attended by the fasces, who had not been a more zealous assertor of liberty than he was afterwards its guardian. First of all he bound over the people, whilst still enraptured with their newly-acquired liberty, by an oath that they would suffer no one to be king in Rome."`,
+    analysis: `Hamilton's argument is essentially a response to Brutus's influence on anti-federalists who feared a powerful executive would usher in a monarchy. While accepting the notion that concentrated authority can be dangerous, Hamilton argues that administrative feebleness leads to a failed government — advocating for oversight over a strong executive rather than denying the executive adequate power.`
+  },
+  'fp70-polybius': {
+    author: 'Aratus of Sicyon (via Polybius)',
+    work: 'The Histories',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/home.html',
+    quote: `"For twenty-five years, then, this league of cities continued, electing for a certain period a Secretary of state and two Strategi. After this they decided to elect one Strategus and entrust him with the general direction of their affairs, the first to be nominated to this honourable office being Margus of Caryneia."`,
+    analysis: `Hamilton cites the Achaean League's failure with shared military command as an example demonstrating the inefficacy of dual leadership. Hamilton generalizes the broader principle that unity in decision-making is essential for decisive leadership, shaping his belief that there must be a single person tasked with executing policy against external threats, particularly through commanding the military.`
+  },
+  'fp70-plutarch1': {
+    author: 'Plutarch',
+    work: 'Parallel Lives (Life of Lycurgus)',
+    url: 'https://classics.mit.edu/Plutarch/lycurgus.html',
+    quote: `"Among the many innovations which Lycurgus made, the first and most important was his institution of a senate, or Council of Elders, which, as Plato says, by being blended with the 'feverish' government of the kings, and by having an equal vote with them in matters of the highest importance, brought safety and due moderation into counsels of state. For before this the civil polity was veering and unsteady, inclining at one time to follow the kings towards tyranny, and at another to follow the multitude towards democracy..."`,
+    analysis: `Hamilton uses Plutarch's accounts of dual leadership to demonstrate that splitting power among equals leads to administrative tension. He therefore argues that while dual leadership was intended to prevent tyranny, it often resulted in an ineffective government instead.`
+  },
+  'fp70-plutarch2': {
+    author: 'Philopoemen (via Plutarch)',
+    work: 'Life of Philopoemen',
+    url: 'https://classics.mit.edu/Plutarch/philopoe.html',
+    quote: `"For since he was the child, as it were, of her late old age and succeeded to the virtues of her ancient commanders, Greece loved him surpassingly, and as his reputation grew, increased his power. And a certain Roman, in praising him, called him the last of the Greeks, implying that Greece produced no great man after him, nor one worthy of her."`,
+    analysis: `Philopoemen's reputation as a single, effective military commander provides historical credence to Hamilton's belief that unified leadership is critical in high-stakes environments. Hamilton pushes this theory further, arguing that national security more generally requires an executive with the authority to act decisively.`
+  },
+  'fp70-livy2': {
+    author: 'Appius Claudius (via Livy)',
+    work: 'Ab Urbe Condita',
+    url: 'https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Livy/home.html',
+    quote: `"That they had equalized the rights of all, both the highest and the lowest, as far as could be devised by the abilities of ten men; that the understanding and counsels of a greater number might prove more successful... the laws of the ten tables were passed at the assembly voting by centuries; which, even at the present time, amid this immense heap of laws crowded one upon the other, still remain the source of all public and private jurisprudence."`,
+    analysis: `Hamilton uses the Decemviri to demonstrate that plurality does not inherently safeguard liberty. In fact, he argues that collective bodies may be more dangerous as it is harder to hold them accountable. As such, he advocates for a single executive to ultimately execute policy.`
+  }
+};
+
+// ── Tooltip logic ──
+const tooltip = document.getElementById('tooltip');
+const ttAuthor = document.getElementById('tt-author');
+const ttWork = document.getElementById('tt-work');
+const ttQuote = document.getElementById('tt-quote');
+const ttAnalysis = document.getElementById('tt-analysis');
+
+let hideTimer = null;
+
+function showTooltip(id, e) {
+  clearTimeout(hideTimer);
+  const ann = annotations[id];
+  if (!ann) return;
+  ttAuthor.textContent = ann.author;
+  ttWork.innerHTML = `<a href="${ann.url}" target="_blank" rel="noopener noreferrer">${ann.work} &#8599;</a>`;
+  ttQuote.textContent = ann.quote;
+  ttAnalysis.textContent = ann.analysis;
+  tooltip.classList.add('visible');
+  tooltip.setAttribute('aria-hidden', 'false');
+  positionTooltip(e);
+}
+
+function hideTooltip() {
+  hideTimer = setTimeout(function() {
+    tooltip.classList.remove('visible');
+    tooltip.setAttribute('aria-hidden', 'true');
+  }, 120);
+}
+
+function positionTooltip(e) {
+  const margin = 14;
+  const tw = tooltip.offsetWidth || 430;
+  const th = tooltip.offsetHeight || 220;
+  let x = e.clientX + margin;
+  let y = e.clientY + margin;
+  if (x + tw > window.innerWidth - 8) x = e.clientX - tw - margin;
+  if (y + th > window.innerHeight - 8) y = e.clientY - th - margin;
+  if (x < 8) x = 8;
+  if (y < 8) y = 8;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+
+document.querySelectorAll('.annotated').forEach(function(el) {
+  el.addEventListener('mouseenter', function(e) { showTooltip(el.dataset.id, e); });
+  el.addEventListener('mousemove', function(e) { positionTooltip(e); });
+  el.addEventListener('mouseleave', hideTooltip);
+  // Touch support
+  el.addEventListener('click', function(e) {
+    e.stopPropagation();
+    showTooltip(el.dataset.id, e);
+  });
+});
+
+tooltip.addEventListener('mouseenter', function() { clearTimeout(hideTimer); });
+tooltip.addEventListener('mouseleave', hideTooltip);
+
+document.addEventListener('click', function() {
+  tooltip.classList.remove('visible');
+});
+</script>
+</body>
+</html>
